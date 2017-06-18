@@ -1,8 +1,9 @@
 # LBXScanUITool
 
 
+[LBXScan](https://github.com/MxABC/LBXScan)和([swiftscan](https://github.com/MxABC/swiftScan))扫码界面DIY工具及辅助对参数的理解
 
-LBXScanViewStyle 界面参数，通过mac app展示出来，方便大家理解
+LBXScanViewStyle 界面参数，通过mac app展示出来，通过界面上的操作，方便大家理解及找到自己需要的参数值。
 
 请看工具gif图
 

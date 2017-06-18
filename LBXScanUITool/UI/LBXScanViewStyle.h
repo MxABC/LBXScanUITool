@@ -107,6 +107,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  must be create by [UIColor colorWithRed: green: blue: alpha:]
  */
+//notRecognitionArea
 @property (nonatomic, strong) NSColor *notRecoginitonArea;
 
 

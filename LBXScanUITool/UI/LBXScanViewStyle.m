@@ -18,7 +18,7 @@
         
         _whRatio = 1.0;
        
-        _colorRetangleLine = [NSColor whiteColor];
+        _colorRetangleLine = [NSColor colorWithRed:1 green:1 blue:1 alpha:1];
         
         _centerUpOffset = 44;
         _xScanRetangleOffset = 60;

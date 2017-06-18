@@ -21,6 +21,13 @@
 @property (weak) IBOutlet NSButton *checkBox_isNeedShowRetangle;
 @property (weak) IBOutlet NSSlider *slider_wRation;
 @property (weak) IBOutlet NSSlider *slider_centerUpOffset;
+@property (weak) IBOutlet NSSlider *slider_xScanRetangleOffset;
+
+@property (weak) IBOutlet NSSlider *slider_photoframeAngleW;
+@property (weak) IBOutlet NSSlider *slider_photoframeAngleH;
+@property (weak) IBOutlet NSSlider *slider_photoframeLineW;
+
+@property (weak) IBOutlet NSSlider *slider_notRecoginitonArea_Alpa;
 
 @property (weak) IBOutlet NSPopUpButton *popUpButton_photoframeAngleStyle;
 
@@ -33,8 +40,22 @@
 
 //扫码框周围4个角的线条颜色 选择按钮
 @property (weak) IBOutlet NSButton *colorPanel_colorAngle;
+@property (weak) IBOutlet NSButton *colorPanel_notRecoginitonArea;
 
-//@property (nonatomic, strong) NSColor *preColor
+#pragma mark ----  结果显示label ----
+
+@property (weak) IBOutlet NSTextField *label_whRatio;
+@property (weak) IBOutlet NSTextField *label_centerUpOffset;
+@property (weak) IBOutlet NSTextField *label_xScanRetangleOffset;
+@property (weak) IBOutlet NSTextField *label_colorRetangleLine;
+@property (weak) IBOutlet NSTextField *label_colorAngle;
+@property (weak) IBOutlet NSTextField *label_photoframeAngleW;
+@property (weak) IBOutlet NSTextField *label_photoframeAngleH;
+@property (weak) IBOutlet NSTextField *label_photoframeLineW;
+@property (weak) IBOutlet NSTextField *label_notRecoginitonArea;
+@property (weak) IBOutlet NSTextField *label_notRecoginitonArea_alpha;
+
+
 
 @end
 

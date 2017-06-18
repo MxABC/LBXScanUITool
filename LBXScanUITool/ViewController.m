@@ -37,6 +37,11 @@
     _colorPanel_colorAngle.transparent = YES;
     _colorPanel_colorAngle.bordered = NO;
     
+    //非识别区颜色
+    [_colorPanel_notRecoginitonArea setBackGroundColor:_style.notRecoginitonArea];
+    _colorPanel_notRecoginitonArea.transparent = YES;
+    _colorPanel_notRecoginitonArea.bordered = NO;
+    
     //相框角 选择list
     [_popUpButton_photoframeAngleStyle removeAllItems];
     [_popUpButton_photoframeAngleStyle addItemWithTitle:@"Inner"];
@@ -61,8 +66,43 @@
             break;
     }
     
+    [self loadParamenter2LabelShow];
+}
+
+- (void)loadParamenter2LabelShow
+{
+    //默认参数值显示
+    _label_whRatio.stringValue = [NSString stringWithFormat:@"%.1f",_style.whRatio];
+    _label_centerUpOffset.stringValue = [NSString stringWithFormat:@"%d",(int)_style.centerUpOffset];
+    _label_xScanRetangleOffset.stringValue = [NSString stringWithFormat:@"%d",(int)_style.xScanRetangleOffset];
+    _label_colorRetangleLine.stringValue = [self stringFromColor:_style.colorRetangleLine];
+    _label_colorAngle.stringValue = [self stringFromColor:_style.colorAngle];
+    _label_photoframeAngleW.stringValue = [NSString stringWithFormat:@"%d",(int)_style.photoframeAngleW];
+    _label_photoframeAngleH.stringValue = [NSString stringWithFormat:@"%d",(int)_style.photoframeAngleH];
+    _label_photoframeLineW.stringValue = [NSString stringWithFormat:@"%d",(int)_style.photoframeLineW];
+    _label_notRecoginitonArea.stringValue = [self stringFromColor:_style.notRecoginitonArea];
+    _label_notRecoginitonArea_alpha.stringValue = [self stringAlphaFromColor:_style.notRecoginitonArea];
+}
+
+- (NSString*)stringFromColor:(NSColor*)color
+{
+    const CGFloat *components = CGColorGetComponents( color.CGColor);
     
     
+    CGFloat red_notRecoginitonArea = components[0];
+    CGFloat green_notRecoginitonArea = components[1];
+    CGFloat blue_notRecoginitonArea = components[2];
+
+    
+    return [NSString stringWithFormat:@"RGB(%d,%d,%d)",(int)(red_notRecoginitonArea*255),(int)(green_notRecoginitonArea*255),(int)(blue_notRecoginitonArea*255)];
+    
+}
+
+- (NSString*)stringAlphaFromColor:(NSColor*)color
+{
+    const CGFloat *components = CGColorGetComponents( color.CGColor);
+    CGFloat alpha_notRecoginitonArea = components[3];
+    return [NSString stringWithFormat:@"%.1f",alpha_notRecoginitonArea];
 }
 
 
@@ -94,6 +134,10 @@
     else if (_preButton == _colorPanel_colorAngle){
         colorpanel.color = _style.colorAngle;
     }
+    else if (_preButton == _colorPanel_notRecoginitonArea)
+    {
+        colorpanel.color = _style.notRecoginitonArea;
+    }
     
     
     [colorpanel orderFront:_checkBox_isNeedShowRetangle];
@@ -112,7 +156,7 @@
         
         //扫码框颜色
         _style.colorRetangleLine = panelColor;
-        [_scanView setNeedsDisplay:YES];
+       
     }
     else if (_preButton == _colorPanel_colorAngle)
     {
@@ -121,15 +165,44 @@
         
         //扫码框4个角颜色
         _style.colorAngle = panelColor;
-        [_scanView setNeedsDisplay:YES];
+   
     }
+    else if (_preButton == _colorPanel_notRecoginitonArea)
+    {
+        [_colorPanel_notRecoginitonArea setBackGroundColor:panelColor];
+        const CGFloat *components = CGColorGetComponents(panelColor.CGColor);
+        
+        
+        CGFloat red_notRecoginitonArea = components[0];
+        CGFloat green_notRecoginitonArea = components[1];
+        CGFloat blue_notRecoginitonArea = components[2];
+//        CGFloat alpa_notRecoginitonArea = components[3];
 
+        NSColor *color = [NSColor colorWithRed:red_notRecoginitonArea green:green_notRecoginitonArea blue:blue_notRecoginitonArea alpha:0.5];
+        
+        _style.notRecoginitonArea = color;
+    }
+    
+    [self loadParamenter2LabelShow];
+    
+    [_scanView setNeedsDisplay:YES];
 
 }
 
 
-
 - (IBAction)sliderAction:(id)sender {
+    
+    
+    _label_whRatio.stringValue = [NSString stringWithFormat:@"%.1f",_style.whRatio];
+    _label_centerUpOffset.stringValue = [NSString stringWithFormat:@"%d",(int)_style.centerUpOffset];
+    _label_xScanRetangleOffset.stringValue = [NSString stringWithFormat:@"%d",(int)_style.xScanRetangleOffset];
+    _label_colorRetangleLine.stringValue = [self stringFromColor:_style.colorRetangleLine];
+    _label_colorAngle.stringValue = [self stringFromColor:_style.colorAngle];
+    _label_photoframeAngleW.stringValue = [NSString stringWithFormat:@"%d",(int)_style.photoframeAngleW];
+    _label_photoframeAngleH.stringValue = [NSString stringWithFormat:@"%d",(int)_style.photoframeAngleH];
+    _label_photoframeLineW.stringValue = [NSString stringWithFormat:@"%d",(int)_style.photoframeLineW];
+    _label_notRecoginitonArea.stringValue = [self stringFromColor:_style.notRecoginitonArea];
+    _label_notRecoginitonArea_alpha.stringValue = [self stringAlphaFromColor:_style.notRecoginitonArea];
     
     if (sender == _slider_wRation) {
         NSLog(@"%f",  _slider_wRation.doubleValue);
@@ -142,6 +215,47 @@
         NSLog(@"%ld",  _slider_centerUpOffset.integerValue);
         _style.centerUpOffset = _slider_centerUpOffset.integerValue;
     }
+    else if (sender == _slider_xScanRetangleOffset)
+    {
+        _style.xScanRetangleOffset = _slider_xScanRetangleOffset.integerValue;
+    }
+    else if (sender == _slider_photoframeAngleW)
+    {
+        _style.photoframeAngleW = _slider_photoframeAngleW.integerValue;
+    }
+    else if (sender == _slider_photoframeAngleH)
+    {
+        _style.photoframeAngleH = _slider_photoframeAngleH.integerValue;
+    }
+    else if (sender == _slider_photoframeAngleH)
+    {
+        _style.photoframeAngleH = _slider_photoframeAngleH.integerValue;
+    }
+    else if (sender == _slider_photoframeLineW)
+    {
+        _style.photoframeLineW = _slider_photoframeLineW.integerValue;
+    }
+    else if (sender == _slider_notRecoginitonArea_Alpa)
+    {
+        const CGFloat *components = CGColorGetComponents( _style.notRecoginitonArea.CGColor);
+        
+        
+        CGFloat red_notRecoginitonArea = components[0];
+        CGFloat green_notRecoginitonArea = components[1];
+        CGFloat blue_notRecoginitonArea = components[2];
+        //        CGFloat alpa_notRecoginitonArea = components[3];
+        
+        CGFloat alpha = _slider_notRecoginitonArea_Alpa.integerValue / 100.0;
+        
+        NSColor *color = [NSColor colorWithRed:red_notRecoginitonArea green:green_notRecoginitonArea blue:blue_notRecoginitonArea alpha:alpha];
+        
+        _style.notRecoginitonArea = color;
+        
+        [_scanView setNeedsDisplay:YES];
+
+    }
+    
+    [self loadParamenter2LabelShow];
     
     [_scanView setNeedsDisplay:YES];
 
@@ -245,7 +359,7 @@
     //扫码框内 动画类型 --线条上下移动
     style.anmiationStyle = LBXScanViewAnimationStyle_LineMove;
     
-    style.colorRetangleLine = [NSColor blueColor];
+    style.colorRetangleLine = [NSColor colorWithRed:0 green:0 blue:1 alpha:1.];
     
     //线条上下移动图片
     style.animationImage = [NSImage imageNamed:@"CodeScan.bundle/qrcode_scan_light_green"];

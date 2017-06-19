@@ -8,6 +8,8 @@
 
 #import "LBXScanLineAnimation.h"
 #import "NSView+Extension.h"
+#import <AppKit/AppKit.h>
+#import <QuartzCore/QuartzCore.h>
 
 
 @interface LBXScanLineAnimation()
@@ -27,6 +29,10 @@
 
 @implementation LBXScanLineAnimation
 
+- (BOOL)isFlipped
+{
+    return YES;
+}
 
 
 - (void)stepAnimation
@@ -35,41 +41,36 @@
         return;
     }
     
-   
-    CGFloat leftx = _animationRect.origin.x + 5;
-    CGFloat width = _animationRect.size.width - 10;
+    CGFloat leftx = _animationRect.origin.x - 5;
+    CGFloat width = _animationRect.size.width -10 ;
     
     self.frame = CGRectMake(leftx, _animationRect.origin.y + 8, width, 8);
-    
-    self.alpha = 0.0;
-    
+    self.alpha = 1.0;
     self.hidden = NO;
     
-//    __weak __typeof(self) weakSelf = self;
-//    
-//    [NSView animateWithDuration:0.5 animations:^{
-//         weakSelf.alpha = 1.0;
-//        
-//     
-//        
-//    } completion:^(BOOL finished)
-//     {
-//         
-//     }];
-//    
-//    [NSView animateWithDuration:3 animations:^{
-//        CGFloat leftx = _animationRect.origin.x + 5;
-//        CGFloat width = _animationRect.size.width - 10;
-//        
-//        
-//        
-//        weakSelf.frame = CGRectMake(leftx, _animationRect.origin.y + _animationRect.size.height - 8, width, 4);
-//        
-//    } completion:^(BOOL finished)
-//     {
-//         self.hidden = YES;
-//         [weakSelf performSelector:@selector(stepAnimation) withObject:nil afterDelay:0.3];
-//     }];
+    CAKeyframeAnimation *keyframeAnimation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
+    keyframeAnimation.duration = 3;
+    keyframeAnimation.repeatCount = NSIntegerMax;
+    CGAffineTransform transform = CGAffineTransformScale(CGAffineTransformIdentity, 1, 1);
+    CGMutablePathRef path = CGPathCreateMutable();
+    
+
+    CGPoint points[20];
+    CGFloat yMin = self.frame.origin.y + 8;
+    CGFloat yMax = _animationRect.origin.y + _animationRect.size.height - 8;
+    
+    CGFloat diff = (yMax - yMin) / 20;
+    for (int i = 0; i < 20; i++) {
+        points[i] = CGPointMake(leftx, yMin + diff * i);
+    }
+    
+    
+    CGPathAddLines(path, &transform, points, 20);
+    
+    keyframeAnimation.path = path;
+    CGPathRelease(path);
+    [self.layer addAnimation:keyframeAnimation forKey:@""];
+    
 }
 
 
@@ -85,7 +86,7 @@
     
     self.animationRect = animationRect;
     down = YES;
-    num =0;
+    num = 0;
     
     CGFloat centery = CGRectGetMinY(animationRect) + CGRectGetHeight(animationRect)/2;
     CGFloat leftx = animationRect.origin.x + 5;

@@ -331,6 +331,8 @@
     [_iphoneView setBackGroundColor:[NSColor colorWithRed:53/255. green:143/255. blue:231/255. alpha:1.]];
     
     self.scanView = scanview;
+    
+//    [_scanView startScanAnimation];
 }
 
 #pragma mark -模仿qq界面
@@ -362,7 +364,7 @@
     style.colorRetangleLine = [NSColor colorWithRed:0 green:0 blue:1 alpha:1.];
     
     //线条上下移动图片
-    style.animationImage = [NSImage imageNamed:@"CodeScan.bundle/qrcode_scan_light_green"];
+    style.animationImage = [NSImage imageNamed:@"qrcode_scan_light_green"];
     
     return style;
 }

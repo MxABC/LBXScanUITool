@@ -50,9 +50,7 @@ NS_ASSUME_NONNULL_END
     if (self = [super initWithFrame:frame])
     {
         self.viewStyle = style;
-//        self.backgroundColor = [NSColor clearColor];
-        
-        
+
     }
     return self;
 }
@@ -128,6 +126,7 @@ NS_ASSUME_NONNULL_END
  */
 - (void)startScanAnimation
 {
+    [self  computeScanRect];
     switch (_viewStyle.anmiationStyle)
     {
         case LBXScanViewAnimationStyle_LineMove:
@@ -374,6 +373,30 @@ NS_ASSUME_NONNULL_END
     CGContextAddLineToPoint(context, rightX, bottomY - hAngle);
     
     CGContextStrokePath(context);
+}
+
+- (void)computeScanRect
+{
+    int XRetangleLeft = _viewStyle.xScanRetangleOffset;
+    
+    CGSize sizeRetangle = CGSizeMake(self.frame.size.width - XRetangleLeft*2, self.frame.size.width - XRetangleLeft*2);
+    
+    //if (!_viewStyle.isScanRetangelSquare)
+    if (_viewStyle.whRatio != 1)
+    {
+        CGFloat w = sizeRetangle.width;
+        CGFloat h = w / _viewStyle.whRatio;
+        
+        NSInteger hInt = (NSInteger)h;
+        h  = hInt;
+        
+        sizeRetangle = CGSizeMake(w, h);
+    }
+    
+    //扫码区域Y轴最小坐标
+    CGFloat YMinRetangle = self.frame.size.height / 2.0 - sizeRetangle.height/2.0 - _viewStyle.centerUpOffset;
+
+    _scanRetangleRect = CGRectMake(XRetangleLeft, YMinRetangle, sizeRetangle.width, sizeRetangle.height);
 }
 
 

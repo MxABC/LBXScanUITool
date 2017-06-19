@@ -13,7 +13,6 @@
 		73731A5B1EEE33D9008EFEA4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 73731A5A1EEE33D9008EFEA4 /* ViewController.m */; };
 		73731A5D1EEE33D9008EFEA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73731A5C1EEE33D9008EFEA4 /* Assets.xcassets */; };
 		73731A601EEE33D9008EFEA4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73731A5E1EEE33D9008EFEA4 /* Main.storyboard */; };
-		73731A751EEE3508008EFEA4 /* CodeScan.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 73731A681EEE3508008EFEA4 /* CodeScan.bundle */; };
 		73731A761EEE3508008EFEA4 /* LBXScanLineAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 73731A6A1EEE3508008EFEA4 /* LBXScanLineAnimation.m */; };
 		73731A771EEE3508008EFEA4 /* LBXScanNetAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 73731A6C1EEE3508008EFEA4 /* LBXScanNetAnimation.m */; };
 		73731A791EEE3508008EFEA4 /* LBXScanView.m in Sources */ = {isa = PBXBuildFile; fileRef = 73731A701EEE3508008EFEA4 /* LBXScanView.m */; };
@@ -34,7 +33,6 @@
 		73731A5C1EEE33D9008EFEA4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		73731A5F1EEE33D9008EFEA4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		73731A611EEE33D9008EFEA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		73731A681EEE3508008EFEA4 /* CodeScan.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = CodeScan.bundle; sourceTree = "<group>"; };
 		73731A691EEE3508008EFEA4 /* LBXScanLineAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBXScanLineAnimation.h; sourceTree = "<group>"; };
 		73731A6A1EEE3508008EFEA4 /* LBXScanLineAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBXScanLineAnimation.m; sourceTree = "<group>"; };
 		73731A6B1EEE3508008EFEA4 /* LBXScanNetAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBXScanNetAnimation.h; sourceTree = "<group>"; };
@@ -107,7 +105,6 @@
 		73731A671EEE3508008EFEA4 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				73731A681EEE3508008EFEA4 /* CodeScan.bundle */,
 				73731A691EEE3508008EFEA4 /* LBXScanLineAnimation.h */,
 				73731A6A1EEE3508008EFEA4 /* LBXScanLineAnimation.m */,
 				73731A6B1EEE3508008EFEA4 /* LBXScanNetAnimation.h */,
@@ -182,7 +179,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				73731A5D1EEE33D9008EFEA4 /* Assets.xcassets in Resources */,
-				73731A751EEE3508008EFEA4 /* CodeScan.bundle in Resources */,
 				73731A601EEE33D9008EFEA4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
